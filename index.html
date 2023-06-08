@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download Music</title>
+  </head>
+  <body>
+    <label for="url">Enter URL:</label>
+    <input type="url" name="spotifyUrl" id="url" />
+    <button type="button" id="btn">Submit</button>
+
+    <script>
+      const btn = document.getElementById('btn');
+      btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        var url = document.getElementById('url').value;
+        const res = await fetch('http://localhost:3000/download', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ spotifyUrl: url }),
+        });
+        console.log('HEEEEELOOOO');
+        const blob = await res.blob();
+        url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'song.mp3';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      });
+    </script>
+  </body>
+</html>
