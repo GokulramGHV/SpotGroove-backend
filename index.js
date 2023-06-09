@@ -47,7 +47,9 @@ app.post('/download', async (req, res) => {
   const imageUrl = data.cover_url;
 
   console.log('Downloading: ', data.name, 'by:', data.artists.join(', ')); // Keep an eye on the progress
+  let start = Date.now();
   const song = await spotify.downloadTrack(spotifyUrl); // Downloading goes brr brr
+  console.log(`\ndone, thanks - ${(Date.now() - start) / 1000}s`);
   console.log('After Download, before send!');
 
   // Fetch the image from the URL

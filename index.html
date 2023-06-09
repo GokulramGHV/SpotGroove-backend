@@ -16,7 +16,7 @@
       btn.addEventListener('click', async (e) => {
         e.preventDefault();
         var url = document.getElementById('url').value;
-        const res = await fetch('http://localhost:3000/download', {
+        const res = await fetch('https://spotgroove-backend.gokulramghv.repl.co/download', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -28,7 +28,7 @@
         url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'song.mp3';
+        a.download = 'songyt.mp3';
         document.body.appendChild(a);
         a.click();
         a.remove();
