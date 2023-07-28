@@ -17,6 +17,7 @@ app.use(cors());
 const client_id = process.env["CLIENT_ID"]; // Your client id
 const client_secret = process.env['CLIENT_SECRET']; // Your secret
 const auth_token = Buffer.from(`${client_id}:${client_secret}`, 'utf-8').toString('base64');
+const PORT = process.env["PORT"];
 
 const getAuth = async () => {
     try {
@@ -150,7 +151,7 @@ app.get('/', (req, res) => {
     res.send('Server is running!');
 });
 
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server started on port ${PORT}`);
     console.log(new Date())
 });
